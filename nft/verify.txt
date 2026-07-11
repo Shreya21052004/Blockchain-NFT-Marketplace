@@ -1,0 +1,5 @@
+# Check your balance
+Invoke-WebRequest -Uri "http://localhost:4000/api/nfts/wallet/0xf90d3d6d86c5647d992dc529c0d1e70ef5069a46" -UseBasicParsing
+
+# Check your owned NFTs
+Invoke-WebRequest -Uri "http://localhost:4000/api/nfts/wallet/0xf90d3d6d86c5647d992dc529c0d1e70ef5069a46" -UseBasicParsing | Select-Object -ExpandProperty Content | ConvertFrom-Json | Select-Object -ExpandProperty ownedNFTs | ForEach-Object { "$($_.metadata.name): $($_.price) ETH" }
